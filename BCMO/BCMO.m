@@ -1,6 +1,5 @@
 function [best,BCMO_curve] = BCMO(fitnessFunc,NP,MaxGeneration,d,LB,UB)
 %% 100-LINE MATLAB SOURCE CODES of BALANCING COMPOSITE MOTION OPTIMIZATION (BCMO), First Edition, October 2019
-%% AUTHORS: Thang Le-Duc, Quoc-Hung Nguyen, H. Nguyen-Xuan
 %% PROGRAMMER: Thang Le-Duc
 %% EMAILS:
 %         thang.ld@vgu.edu.vn; le.duc.thang0312@gmail.com
