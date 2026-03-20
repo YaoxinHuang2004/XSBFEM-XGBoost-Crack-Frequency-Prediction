@@ -1,5 +1,4 @@
 %% 100-LINE MATLAB SOURCE CODES of BALANCING COMPOSITE MOTION OPTIMIZATION (BCMO)
-%% AUTHORS: Thang Le-Duc, Quoc-Hung Nguyen, H. Nguyen-Xuan
 %% Start main program
 clear all, close all, clc
 %% Define input parameters
