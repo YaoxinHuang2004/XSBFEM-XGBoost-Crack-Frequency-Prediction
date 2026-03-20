@@ -18,16 +18,86 @@ Our work proposes a novel hybrid framework that integrates the numerical rigor o
 
 ```text
 ├── Data/
-│   ├── training_data_3000.csv       # Original dataset generated via XSBFEM
-│   └── lhs_efficiency_test.csv      # LHS generated data for efficiency testing
+│   ├── Calculated_3000_LHS_Dataset.xlsx       # Original dataset generated via XSBFEM
+│   └── New_3000_LHS_Dataset.xlsx      # LHS generated data for efficiency testing Best_BCMO_XGBoost_Model
 ├── Models/
-│   ├── bcmo_xgboost_model.pkl       # Pre-trained BCMO-XGBR regression model
-│   └── shap_analysis.py             # Script for generating SHAP summary plots
-├── XSBFEM_Code/                     
-│   ├── inclined_crack_benchmark.m   # Main script for the inclined center crack example
-│   ├── mesh_generation/             # Subdomain and quadtree mesh generation
-│   └── utils/                       # SIF calculation (Mode I & II) functions
+│   ├── Best_BCMO_XGBoost_Model.mat       # The trained BCMO-XGBR model
+│   └── ML_predic.py               # Load a new dataset for testing
+├── xsbfem/
+├── main_inclined_crack.m          % Main driver (reproduces Fig. 18)
+├── test_sbfem_pure_mode.m         % Standalone validation test
+├── get_material_matrix.m          % 2D constitutive matrix
+├── sbfem_coeff_matrices.m         % E0,E1,E2 for closed polygon
+├── sbfem_coeff_matrices_crack.m   % E0,E1,E2 for crack (open boundary)
+├── sbfem_stiffness.m              % SBFEM stiffness (closed polygon)
+├── sbfem_crack_tip.m              % Crack tip stiffness + SIF extraction
+├── create_graded_mesh.m           % Graded Q4 mesh generation
+├── classify_elements.m            % Element classification using level sets
+├── heaviside_element_stiffness.m  % Enriched stiffness for cut elements
 ├── Results/
 │   └── SIF_comparisons/             # Analytical vs. Numerical SIF plots
 ├── requirements.txt
 └── README.md
+
+## How to Run
+
+### Quick Validation Test
+```matlab
+cd xsbfem
+test_sbfem_pure_mode
+```
+This validates the SBFEM SIF computation for pure mode I, II, and mixed mode 
+cracks using analytical boundary conditions.
+
+### Full Simulation
+```matlab
+cd xsbfem
+main_inclined_crack
+```
+This runs the complete simulation:
+1. **Part A:** Direct SBFEM validation with Williams expansion BCs
+2. **Part B:** Full FEM + enriched SBFEM simulation of the plate
+
+## Method Overview
+
+### SBFEM Core
+1. Boundary nodes of a polygon define the SBFEM subdomain
+2. Scaling centre placed inside (or at crack tip for fracture)
+3. Coefficient matrices E0, E1, E2 computed from boundary integration
+4. Hamiltonian matrix Z formed
+5. Schur decomposition gives modal quantities
+6. Stiffness: K = Vq × Vu⁻¹ 
+
+### Enrichment Strategy 
+- **Standard FE elements:** Computed using conventional Q4 formulation
+- **Heaviside enriched elements:** Elements completely cut by crack are split 
+  into two SBFEM subdomains with virtual nodes at intersection points
+- **Crack tip super element:** Multiple element layers around crack tip form 
+  a single SBFEM subdomain with scaling centre at the tip
+
+### SIF Computation 
+Two methods implemented:
+- **Displacement-based:** Uses crack opening displacement from 
+  singular eigenvalue modes
+- **Stress-based:** Interpolates singular stress modes to crack front
+
+### Key Equations
+- Singular eigenvalues: −1 < Re(λ) < 0 (corresponding to r^{−1/2} singularity)
+- SIF from stress: {KI; KII} = √(2πL₀) × {Ψ_yy^s; Ψ_xy^s} × c^s
+- SIF from displacement: {KI; KII} = G/(κ+1) × √(2π/r₀) × {Δu_y; Δu_x}
+
+## Notes
+
+- The mesh grading parameter (grade_power) concentrates elements near the 
+  crack. Increase for better resolution.
+- Super element requires 3-5 layers of elements around the crack tip.
+- The Schur decomposition may require regularization for ill-conditioned 
+  coefficient matrices.
+- For best accuracy, increase the number of boundary nodes and Gauss 
+  integration points.
+
+## References
+
+[1] Jiang S-Y, Du C-B, Ooi ET. Engineering Fracture Mechanics 222 (2019) 106734  
+[2] Song C, Ooi ET, Natarajan S. Engineering Fracture Mechanics 187 (2018) 45-73  
+[3] Wolf J, Song C. Comp Methods Appl Mech Engrg 190 (2001) 5551-5568
