@@ -63,10 +63,11 @@ This runs the complete simulation:
 ### SBFEM Core
 1. Boundary nodes of a polygon define the SBFEM subdomain
 2. Scaling centre placed inside (or at crack tip for fracture)
-3. Coefficient matrices E0, E1, E2 computed from boundary integration
-4. Hamiltonian matrix Z formed
+3. Coefficient matrices $E_0$, $E_1$, $E_2$ computed from boundary integration
+4. Hamiltonian matrix $Z$ formed
 5. Schur decomposition gives modal quantities
-6. Stiffness: K = Vq × Vu⁻¹ 
+6. Stiffness: 
+   $$K = V_q V_u^{-1}$$
 
 ### Enrichment Strategy 
 - **Standard FE elements:** Computed using conventional Q4 formulation
@@ -82,9 +83,14 @@ Two methods implemented:
 - **Stress-based:** Interpolates singular stress modes to crack front
 
 ### Key Equations
-- Singular eigenvalues: −1 < Re(λ) < 0 (corresponding to r^{−1/2} singularity)
-- SIF from stress: {KI; KII} = √(2πL₀) × {Ψ_yy^s; Ψ_xy^s} × c^s
-- SIF from displacement: {KI; KII} = G/(κ+1) × √(2π/r₀) × {Δu_y; Δu_x}
+
+- **Singular eigenvalues:** $-1 < \text{Re}(\lambda) < 0$ (corresponding to $r^{-1/2}$ singularity)
+
+- **SIF from stress:**
+  $$\begin{Bmatrix} K_I \\ K_{II} \end{Bmatrix} = \sqrt{2\pi L_0} \begin{Bmatrix} \Psi_{yy}^s \\ \Psi_{xy}^s \end{Bmatrix} c^s$$
+
+- **SIF from displacement:**
+  $$\begin{Bmatrix} K_I \\ K_{II} \end{Bmatrix} = \frac{G}{\kappa + 1} \sqrt{\frac{2\pi}{r_0}} \begin{Bmatrix} \Delta u_y \\ \Delta u_x \end{Bmatrix}$$
 ![untitled1](https://github.com/user-attachments/assets/e7b87a86-3062-4d24-912f-856ee2d937c6)
 
 ## Notes
