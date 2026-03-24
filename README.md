@@ -1,4 +1,4 @@
-# XSBFEM-XGBoost Crack Frequency Prediction
+<img width="1062" height="1134" alt="image" src="https://github.com/user-attachments/assets/4d731cd5-9a63-4c99-8b0b-574d6d3d9a54" /># XSBFEM-XGBoost Crack Frequency Prediction
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![DOI](https://img.shields.io/badge/DOI-Pending-blue.svg)](https://doi.org/...) 
@@ -98,7 +98,10 @@ Two methods implemented:
 
 ![untitled1](https://github.com/user-attachments/assets/e7b87a86-3062-4d24-912f-856ee2d937c6)
 
-![Uploading image.png…]()
+<img width="1062" height="1134" alt="image" src="https://github.com/user-attachments/assets/dbf8b060-91dd-4ace-ad6d-4e6a1d23083c" />
+
+
+<img width="1321" height="947" alt="image" src="https://github.com/user-attachments/assets/a28f3979-9a4b-4d18-a579-84c8f4577fb5" />
 
 
 ## Notes
