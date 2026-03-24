@@ -22,7 +22,9 @@ Our work proposes a novel hybrid framework that integrates the numerical rigor o
 │   └── New_3000_LHS_Dataset.xlsx      # LHS generated data for efficiency testing Best_BCMO_XGBoost_Model
 ├── Models/
 │   ├── Best_BCMO_XGBoost_Model.mat       # The trained BCMO-XGBR model
-│   └── ML_predic.py               # Load a new dataset for testing
+│   └── ML_predic.m               # Load a new dataset for testing
+│   └── v5_model.mat               # The trained BCMO-XGBR model Shape
+│   └── ML_Mode_prediction.m               # Load a new dataset for testing
 ├── xsbfem/
 ├── main_inclined_crack.m          % Main driver (reproduces Fig. 18)
 ├── test_sbfem_pure_mode.m         % Standalone validation test
