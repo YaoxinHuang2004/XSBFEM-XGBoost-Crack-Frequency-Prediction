@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![DOI](https://img.shields.io/badge/DOI-Pending-blue.svg)](https://doi.org/...) 
 
-This repository contains the dataset, pre-trained models, and source code associated with the research paper: **"Hybrid XSBFEM-Machine Learning Framework for Accurate Free Vibration Prediction of Cracked BDFGM Plates with SHAP-Based Interpretability."**
+This repository contains the dataset, pre-trained models, and source code associated with the research paper: **"Data-Driven Framework of Vibrations in Bidirectional Gradient Plates: An Extended Scaled Boundary Element Method."**
 
 Our work proposes a novel hybrid framework that integrates the numerical rigor of the Extended Scaled Boundary Finite Element Method (XSBFEM) with the rapid predictive capabilities of Machine Learning (ML), specifically a BCMO-tuned XGBoost model. 
 
